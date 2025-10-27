@@ -16,20 +16,6 @@ export const movies: Movie[] = [
     imdbRating: 8.7,
   },
   {
-    id: 'inception',
-    title: 'Inception',
-    description:
-      'A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
-    genre: ['Action', 'Sci-Fi', 'Thriller'],
-    releaseYear: 2010,
-    director: 'Christopher Nolan',
-    cast: ['Leonardo DiCaprio', 'Marion Cotillard', 'Tom Hardy'],
-    rating: 'PG-13',
-    posterUrl: '/images/posters/inception.jpg',
-    duration: 148,
-    imdbRating: 8.8,
-  },
-  {
     id: 'the-dark-knight',
     title: 'The Dark Knight',
     description:
@@ -126,20 +112,6 @@ export const movies: Movie[] = [
     posterUrl: '/images/posters/goodfellas.jpg',
     duration: 145,
     imdbRating: 8.7,
-  },
-  {
-    id: 'fight-club',
-    title: 'Fight Club',
-    description:
-      'An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into an anarchist organization.',
-    genre: ['Drama'],
-    releaseYear: 1999,
-    director: 'David Fincher',
-    cast: ['Brad Pitt', 'Edward Norton', 'Helena Bonham Carter'],
-    rating: 'R',
-    posterUrl: '/images/posters/fight-club.jpg',
-    duration: 139,
-    imdbRating: 8.8,
   },
   {
     id: 'avatar',

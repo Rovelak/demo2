@@ -1,44 +1,96 @@
-'use client';
-
+import type { Metadata } from 'next';
 import { getAllMovieSummaries } from '@/lib/movie-service';
 import { MovieGrid } from '@/components/movie-grid';
-import { useRouter } from 'next/navigation';
+import { HomePage } from '@/components/home-page';
 
-export default function HomePage() {
-  const router = useRouter();
+export const metadata: Metadata = {
+  title: 'Movie Collection - Browse Movies | Movie Review Website',
+  description:
+    'Browse our curated collection of top-rated movies including The Shawshank Redemption, The Godfather, The Dark Knight, and more. Discover detailed information, cast, and reviews.',
+  keywords: [
+    'movies',
+    'film collection',
+    'movie reviews',
+    'cinema',
+    'top movies',
+    'IMDb',
+    'movie database',
+  ],
+  openGraph: {
+    title: 'Movie Collection - Browse Movies',
+    description:
+      'Browse our curated collection of top-rated movies. Discover detailed information, cast, and reviews.',
+    type: 'website',
+    url: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Movie Collection - Browse Movies',
+    description:
+      'Browse our curated collection of top-rated movies. Discover detailed information, cast, and reviews.',
+  },
+  alternates: {
+    canonical: '/',
+  },
+};
+
+export default function Page() {
   const movies = getAllMovieSummaries();
 
-  const handleMovieClick = (movieId: string) => {
-    router.push(`/movie/${movieId}`);
-  };
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      <header className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-          Movie Review Website
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Discover and explore our curated collection of movies. Click on any
-          movie to see detailed information, cast, and more.
-        </p>
-      </header>
+    <>
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Movie Review Website',
+            url: typeof window !== 'undefined' ? window.location.origin : '',
+            description:
+              'Discover and explore our curated collection of movies',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: '/search?q={search_term_string}',
+              'query-input': 'required name=search_term_string',
+            },
+          }),
+        }}
+      />
 
-      <section>
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-semibold">
-            All Movies ({movies.length})
-          </h2>
-          <div className="text-sm text-muted-foreground">
-            Sorted by IMDb Rating
-          </div>
-        </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Movie Collection',
+            description: 'Curated collection of top-rated movies',
+            numberOfItems: movies.length,
+            itemListElement: movies
+              .sort((a, b) => b.imdbRating - a.imdbRating)
+              .slice(0, 10)
+              .map((movie, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                item: {
+                  '@type': 'Movie',
+                  name: movie.title,
+                  genre: movie.genre,
+                  aggregateRating: {
+                    '@type': 'AggregateRating',
+                    ratingValue: movie.imdbRating,
+                    bestRating: 10,
+                    worstRating: 1,
+                  },
+                },
+              })),
+          }),
+        }}
+      />
 
-        <MovieGrid
-          movies={movies.sort((a, b) => b.imdbRating - a.imdbRating)}
-          onMovieClick={handleMovieClick}
-        />
-      </section>
-    </div>
+      <HomePage movies={movies} />
+    </>
   );
 }

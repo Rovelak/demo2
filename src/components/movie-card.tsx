@@ -13,13 +13,24 @@ interface MovieCardProps {
 }
 
 export function MovieCard({ movie, onClick, className }: MovieCardProps) {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onClick(movie.id);
+    }
+  };
+
   return (
     <Card
       className={cn(
-        'cursor-pointer hover:shadow-lg transition-shadow duration-200 overflow-hidden',
+        'cursor-pointer hover:shadow-lg transition-shadow duration-200 overflow-hidden focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2',
         className
       )}
       onClick={() => onClick(movie.id)}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`View details for ${movie.title}`}
     >
       <CardContent className="p-0">
         <div className="relative aspect-[2/3] w-full">
@@ -31,14 +42,14 @@ export function MovieCard({ movie, onClick, className }: MovieCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
-        <div className="p-4">
-          <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+        <div className="p-3 sm:p-4">
+          <h3 className="font-semibold text-base sm:text-lg mb-2 line-clamp-2">
             {movie.title}
           </h3>
-          <p className="text-sm text-muted-foreground mb-2">
+          <p className="text-xs sm:text-sm text-muted-foreground mb-2">
             {movie.releaseYear}
           </p>
-          <div className="flex flex-wrap gap-1 mb-3">
+          <div className="flex flex-wrap gap-1 mb-2 sm:mb-3">
             {movie.genre.slice(0, 2).map((genre) => (
               <Badge key={genre} variant="secondary" className="text-xs">
                 {genre}
@@ -51,8 +62,8 @@ export function MovieCard({ movie, onClick, className }: MovieCardProps) {
             )}
           </div>
           <div className="flex items-center gap-1">
-            <span className="text-yellow-500">★</span>
-            <span className="text-sm font-medium">
+            <span className="text-yellow-500 text-sm">★</span>
+            <span className="text-xs sm:text-sm font-medium">
               {movie.imdbRating.toFixed(1)}/10
             </span>
           </div>
