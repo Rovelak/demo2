@@ -191,7 +191,7 @@ export async function generateMetadata({
 
   if (!movie) {
     return {
-      title: "Movie Not Found",
+      title: 'Movie Not Found',
     };
   }
 

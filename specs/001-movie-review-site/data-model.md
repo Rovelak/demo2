@@ -136,16 +136,16 @@ if (!movie) {
 ```typescript
 export const movies: Movie[] = [
   {
-    id: "the-matrix",
-    title: "The Matrix",
+    id: 'the-matrix',
+    title: 'The Matrix',
     description:
-      "A computer programmer discovers that reality as he knows it is actually a simulated world, and he must join a rebellion to free humanity from the machines.",
-    genre: ["Action", "Sci-Fi"],
+      'A computer programmer discovers that reality as he knows it is actually a simulated world, and he must join a rebellion to free humanity from the machines.',
+    genre: ['Action', 'Sci-Fi'],
     releaseYear: 1999,
-    director: "The Wachowskis",
-    cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
-    rating: "R",
-    posterUrl: "/images/posters/the-matrix.jpg",
+    director: 'The Wachowskis',
+    cast: ['Keanu Reeves', 'Laurence Fishburne', 'Carrie-Anne Moss'],
+    rating: 'R',
+    posterUrl: '/images/posters/the-matrix.jpg',
     duration: 136,
     imdbRating: 8.7,
   },

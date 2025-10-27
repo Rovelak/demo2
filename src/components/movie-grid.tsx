@@ -1,0 +1,45 @@
+'use client';
+
+import { MovieSummary } from '@/types/movie';
+import { MovieCard } from './movie-card';
+import { cn } from '@/lib/utils';
+
+interface MovieGridProps {
+  movies: MovieSummary[];
+  onMovieClick: (movieId: string) => void;
+  className?: string;
+}
+
+export function MovieGrid({ movies, onMovieClick, className }: MovieGridProps) {
+  if (movies.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12">
+        <h2 className="text-2xl font-semibold text-muted-foreground mb-2">
+          No movies available
+        </h2>
+        <p className="text-muted-foreground text-center max-w-md">
+          We&apos;re working on adding more movies to our collection. Please
+          check back later!
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={cn(
+        'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6',
+        className
+      )}
+    >
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onClick={onMovieClick}
+          className="w-full"
+        />
+      ))}
+    </div>
+  );
+}

@@ -30,12 +30,12 @@ Based on plan.md, this is a Next.js 13+ project with:
 
 **Purpose**: Project initialization and basic Next.js structure
 
-- [ ] T001 Create Next.js project with TypeScript and Tailwind CSS in repository root
-- [ ] T002 [P] Initialize shadcn/ui with default configuration and required components
-- [ ] T003 [P] Configure ESLint and Prettier for TypeScript and React
-- [ ] T004 [P] Create basic directory structure: src/app/, src/components/, src/data/, src/types/, src/lib/
-- [ ] T005 [P] Setup Tailwind CSS globals in src/app/globals.css
-- [ ] T006 [P] Create basic favicon and setup public/images/posters/ directory
+- [x] T001 Create Next.js project with TypeScript and Tailwind CSS in repository root
+- [x] T002 [P] Initialize shadcn/ui with default configuration and required components
+- [x] T003 [P] Configure ESLint and Prettier for TypeScript and React
+- [x] T004 [P] Create basic directory structure: src/app/, src/components/, src/data/, src/types/, src/lib/
+- [x] T005 [P] Setup Tailwind CSS globals in src/app/globals.css
+- [x] T006 [P] Create basic favicon and setup public/images/posters/ directory
 
 ---
 
@@ -45,13 +45,13 @@ Based on plan.md, this is a Next.js 13+ project with:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Create Movie interface in src/types/movie.ts with all required fields
-- [ ] T008 [P] Create MovieSummary interface in src/types/movie.ts for landing page performance
-- [ ] T009 [P] Create component prop interfaces in src/types/components.ts
-- [ ] T010 Create sample movie data in src/data/movies.ts with 10-15 mock movies
-- [ ] T011 [P] Create movie service functions in src/lib/movie-service.ts (getAllMovieSummaries, getMovieById, getAllMovieIds)
-- [ ] T012 [P] Setup utility functions in src/lib/utils.ts for shadcn/ui
-- [ ] T013 Create root layout component in src/app/layout.tsx with proper metadata and Tailwind setup
+- [x] T007 Create Movie interface in src/types/movie.ts with all required fields
+- [x] T008 [P] Create MovieSummary interface in src/types/movie.ts for landing page performance
+- [x] T009 [P] Create component prop interfaces in src/types/components.ts
+- [x] T010 Create sample movie data in src/data/movies.ts with 10-15 mock movies
+- [x] T011 [P] Create movie service functions in src/lib/movie-service.ts (getAllMovieSummaries, getMovieById, getAllMovieIds)
+- [x] T012 [P] Setup utility functions in src/lib/utils.ts for shadcn/ui
+- [x] T013 Create root layout component in src/app/layout.tsx with proper metadata and Tailwind setup
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
