@@ -70,9 +70,9 @@ export function MovieDetails({ movie }: MovieDetailsProps) {
       </div>
 
       {/* Movie Details */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <article className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Movie Poster */}
-        <div className="lg:col-span-1">
+        <aside className="lg:col-span-1" aria-label="Movie poster">
           <Card className="overflow-hidden">
             <CardContent className="p-0">
               <div className="relative aspect-[2/3] w-full">
@@ -87,19 +87,28 @@ export function MovieDetails({ movie }: MovieDetailsProps) {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </aside>
 
         {/* Movie Information */}
-        <div className="lg:col-span-2 space-y-6">
+        <section
+          className="lg:col-span-2 space-y-6"
+          aria-labelledby="movie-title"
+        >
           {/* Title and Basic Info */}
-          <div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          <header>
+            <h1
+              id="movie-title"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
+            >
               {movie.title}
             </h1>
 
             <div className="flex flex-wrap items-center gap-4 mb-4">
-              <div className="flex items-center gap-1">
-                <Star className="h-5 w-5 text-yellow-500 fill-current" />
+              <div className="flex items-center gap-1" aria-label="IMDb rating">
+                <Star
+                  className="h-5 w-5 text-yellow-500 fill-current"
+                  aria-hidden="true"
+                />
                 <span className="text-lg font-semibold">
                   {movie.imdbRating.toFixed(1)}/10
                 </span>
@@ -109,25 +118,31 @@ export function MovieDetails({ movie }: MovieDetailsProps) {
               </div>
 
               <div className="flex items-center gap-1 text-muted-foreground">
-                <Calendar className="h-4 w-4" />
-                <span>{movie.releaseYear}</span>
+                <Calendar className="h-4 w-4" aria-hidden="true" />
+                <time dateTime={movie.releaseYear.toString()}>
+                  {movie.releaseYear}
+                </time>
               </div>
 
               <div className="flex items-center gap-1 text-muted-foreground">
-                <Clock className="h-4 w-4" />
+                <Clock className="h-4 w-4" aria-hidden="true" />
                 <span>{movie.duration} min</span>
               </div>
             </div>
 
             {/* Genres */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div
+              className="flex flex-wrap gap-2 mb-6"
+              role="list"
+              aria-label="Movie genres"
+            >
               {movie.genre.map((genre) => (
-                <Badge key={genre} variant="secondary">
+                <Badge key={genre} variant="secondary" role="listitem">
                   {genre}
                 </Badge>
               ))}
             </div>
-          </div>
+          </header>
 
           {/* Plot */}
           <Card>
@@ -203,31 +218,40 @@ export function MovieDetails({ movie }: MovieDetailsProps) {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
 
       {/* Related Movies Section */}
       {relatedMovies.length > 0 && (
-        <div className="mt-12">
+        <section className="mt-12" aria-labelledby="related-movies">
           <div className="border-t pt-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold">Related Movies</h2>
+            <header className="flex items-center justify-between mb-6">
+              <h2 id="related-movies" className="text-2xl font-semibold">
+                Related Movies
+              </h2>
               <Button variant="outline" asChild>
-                <Link href="/">View All Movies</Link>
+                <Link href="/" aria-label="View all movies">
+                  View All Movies
+                </Link>
               </Button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            </header>
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+              role="list"
+              aria-label="Related movies"
+            >
               {relatedMovies.map((relatedMovie) => (
-                <MovieCard
-                  key={relatedMovie.id}
-                  movie={relatedMovie}
-                  onClick={handleMovieClick}
-                  className="w-full"
-                />
+                <div key={relatedMovie.id} role="listitem">
+                  <MovieCard
+                    movie={relatedMovie}
+                    onClick={handleMovieClick}
+                    className="w-full"
+                  />
+                </div>
               ))}
             </div>
           </div>
-        </div>
+        </section>
       )}
     </div>
   );

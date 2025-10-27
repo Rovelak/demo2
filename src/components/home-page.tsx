@@ -27,15 +27,18 @@ export function HomePage({ movies }: HomePageProps) {
         </p>
       </header>
 
-      <section>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-2 sm:gap-4">
-          <h2 className="text-xl sm:text-2xl font-semibold">
+      <section aria-labelledby="movies-heading">
+        <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 gap-2 sm:gap-4">
+          <h2 id="movies-heading" className="text-xl sm:text-2xl font-semibold">
             All Movies ({movies.length})
           </h2>
-          <div className="text-xs sm:text-sm text-muted-foreground">
+          <div
+            className="text-xs sm:text-sm text-muted-foreground"
+            aria-label="Sort information"
+          >
             Sorted by IMDb Rating
           </div>
-        </div>
+        </header>
 
         <MovieGrid
           movies={movies.sort((a, b) => b.imdbRating - a.imdbRating)}
