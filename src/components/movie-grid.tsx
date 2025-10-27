@@ -13,7 +13,11 @@ interface MovieGridProps {
 export function MovieGrid({ movies, onMovieClick, className }: MovieGridProps) {
   if (movies.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-8 sm:py-12 px-4">
+      <div
+        className="flex flex-col items-center justify-center py-8 sm:py-12 px-4"
+        role="status"
+        aria-live="polite"
+      >
         <h2 className="text-xl sm:text-2xl font-semibold text-muted-foreground mb-2 text-center">
           No movies available
         </h2>
@@ -31,14 +35,13 @@ export function MovieGrid({ movies, onMovieClick, className }: MovieGridProps) {
         'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6',
         className
       )}
+      role="list"
+      aria-label={`Collection of ${movies.length} movies`}
     >
       {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onClick={onMovieClick}
-          className="w-full"
-        />
+        <div key={movie.id} role="listitem">
+          <MovieCard movie={movie} onClick={onMovieClick} className="w-full" />
+        </div>
       ))}
     </div>
   );
